@@ -5,11 +5,11 @@ et remplis les 3 colonnes. Il y a **6 problèmes volontaires** dans ce starter.
 
 | # | Problème trouvé (où, quoi) | Principe WCAG (P / O / U / R) | Pourquoi c'est bloquant, et pour qui |
 |---|------------------------------|-------------------------------|----------------------------------------|
-| 1 | | | |
-| 2 | | | |
-| 3 | | | |
-| 4 | | | |
-| 5 | | | |
-| 6 | | | |
+| 1 | `src/App.tsx` (l. 19) : `<img src="/hero.jpg" />` sans attribut `alt` | **P** - Perceptible | Un lecteur d'écran ne peut pas décrire l'image (il lira au mieux l'URL du fichier). Elle est totalement invisible et inaccessible pour un utilisateur non-voyant ou malvoyant utilisant un lecteur d'écran ou une plage braille. |
+| 2 | `src/App.tsx` (l. 17-21) : Titre `<h1>` suivi directement d'un `<h3>` sans passer par un `<h2>` (saut dans la hiérarchie des titres) | **R** - Robuste | La hiérarchie des titres structure le document et sert de repère majeur de navigation pour les technologies d'assistance (raccourcis de titres H1/H2/H3). Un saut de niveau brise la cohérence structurelle et désoriente l'utilisateur. |
+| 3 | `src/App.tsx` (l. 36-38) : `<div className="see-more" onClick=...>` au lieu d'un élément `<button>` | **O** - Opérable | L'élément `div` n'est pas focusable nativement au clavier (pas de `tabIndex`), ne réagit pas aux touches `Entrée` ou `Espace`, et ne transmet aucun rôle interactif aux technologies d'assistance. Il est inutilisable pour les personnes naviguant uniquement au clavier (handicap moteur) et les utilisateurs de lecteurs d'écran pour qui c'est un simple texte statique. |
+| 4 | `src/App.tsx` (l. 32-34) / `src/App.css` (l. 6) : Bandeau `.carousel` présent sans moyen de le fermer, masquer ou mettre en pause | **O** - Opérable | L'utilisateur n'a aucun contrôle sur ce composant persistant/animé (WCAG 2.2.2). C'est bloquant ou perturbant pour les personnes ayant des troubles cognitifs ou de l'attention (TDAH), ou des difficultés de lecture, qui ne peuvent pas éliminer cette distraction visuelle. |
+| 5 | `src/App.tsx` (l. 41-43) : Trois liens avec l'intitulé générique et identique "cliquez ici" | **U** - Utilisable / Compréhensible | L'intitulé du lien n'est pas explicite hors de son contexte immédiat. Les utilisateurs de lecteurs d'écran parcourent souvent les pages en extrayant la liste des liens : trois liens "cliquez ici" rendent impossible l'identification de la destination de chaque lien. |
+| 6 | `src/App.tsx` (l. 26) / `src/App.css` (l. 4-5) : Statut de l'article ("annulé" / "publié") indiqué uniquement par la couleur du point (`dot-red` / `dot-green`) | **P** - Perceptible | L'information est véhiculée uniquement par la couleur (WCAG 1.4.1). Les personnes daltoniennes (deutéranopes, protanopes, etc.), les personnes utilisant un affichage monochrome ou en fort contraste ne peuvent pas distinguer si un article est annulé ou publié sans texte ou symbole explicite. |
 
 > Rappel : P = Perceptible, O = Opérable, U = Utilisable (Compréhensible), R = Robuste.
